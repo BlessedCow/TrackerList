@@ -4,7 +4,7 @@ This script is designed to format a Google Sheets spreadsheet in a specific way.
 Usage
 
 To use this script, simply copy and paste the code into the appropriate location in your Google Sheets document. The script can be run by clicking on the "Run" button or by assigning it a trigger to run automatically.
-Operations
+
 
 ## The script performs the following operations:
 
