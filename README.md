@@ -8,13 +8,13 @@ Operations
 
 ## The script performs the following operations:
 
-    * Formats column E to display dates in the mm/dd/yyyy format.
-    * Resets any existing highlighting or background and sorts the sheet by email, name, and date in ascending order.
-    * Removes any duplicate rows based on columns 2 (email), 3 (name), and 5 (date).
-    * Creates separate arrays for each of five different colors based on the day of the month in column E (date).
-    * Sorts each array separately by email, name, and date in ascending order before concatenating them back together in a specific order.
-    * Clears the sheet and writes the sorted data back to it. If two consecutive rows have different emails, a new row is inserted before the current one to separate them.
-    * Highlights each row based on its day of the month color, using the same colors as before.
+    + Formats column E to display dates in the mm/dd/yyyy format.
+    + Resets any existing highlighting or background and sorts the sheet by email, name, and date in ascending order.
+    + Removes any duplicate rows based on columns 2 (email), 3 (name), and 5 (date).
+    + Creates separate arrays for each of five different colors based on the day of the month in column E (date).
+    + Sorts each array separately by email, name, and date in ascending order before concatenating them back together in a specific order.
+    + Clears the sheet and writes the sorted data back to it. If two consecutive rows have different emails, a new row is inserted before the current one to separate them.
+    + Highlights each row based on its day of the month color, using the same colors as before.
 
 ## Benefits
 
