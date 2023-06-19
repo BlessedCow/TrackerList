@@ -16,7 +16,7 @@ function formatSheet() {
   // Step 5: Create separate arrays for each color
   var range = sheet.getDataRange();
   var values = range.getValues();
-  var colorsData = {"#F0E8B9": [], "#DEB48B": [], "#DC9632": [], "#F3A15C": [], "#F3835C": []};
+  var colorsData = {"#F0E8B9": [], "#DEB48B": [], "#D9915D": [], "#f3a15c": [], "#f3835c": []};
   for (var i = 1; i < values.length; i++) {
     var row = values[i];
     var date = new Date(row[4]);
@@ -27,11 +27,11 @@ function formatSheet() {
     } else if (day >= 8 && day <= 14) {
       color = "#DEB48B";
     } else if (day >= 15 && day <= 21) {
-      color = "#DC9632";
+      color = "#D9915D";
     } else if (day >= 22 && day <= 28) {
-      color = "#F3A15C";
+      color = "#f3a15c";
     } else if (day >= 29 && day <= 31) {
-      color = "#F3835C";
+      color = "#f3835c";
     }
     if (color) {
       colorsData[color].push(row);
@@ -53,7 +53,7 @@ function formatSheet() {
 
   // Step 7: Concatenate the arrays back together in the desired order
   var sortedData = [];
-  var colors = ["#F0E8B9", "#DEB48B", "#DC9632", "#F3A15C", "#F3835C"];
+  var colors = ["#F0E8B9", "#DEB48B", "#D9915D", "#f3a15c", "#f3835c"];
   for (var i = 0; i < colors.length; i++) {
     sortedData = sortedData.concat(colorsData[colors[i]]);
   }
@@ -61,11 +61,21 @@ function formatSheet() {
   // Step 8: Clear the sheet and write the sorted data back to it
   sheet.clearContents();
   sheet.getRange(1,1,1,range.getNumColumns()).setValues([range.offset(0,0,1,range.getNumColumns()).getValues()[0]]);
-  sheet.getRange(2,1,sortedData.length,sortedData[0].length).setValues(sortedData);
-
-  // Step 9: Highlight rows based on day of month
+  
+  var rowToInsert = 2;
   for (var i = 1; i < sortedData.length; i++) {
     var row = sortedData[i];
+    if (row[1] !== sortedData[i-1][1]) { // compare email with the one in previous row
+      sheet.insertRowBefore(rowToInsert);
+      rowToInsert++;
+    }
+    sheet.getRange(rowToInsert, 1, 1, row.length).setValues([row]);
+    rowToInsert++;
+  }
+
+  // Step 9: Highlight rows based on day of month
+  for (var i = 2; i <= sheet.getLastRow(); i++) {
+    var row = sheet.getRange(i, 1, 1, range.getNumColumns()).getValues()[0];
     var date = new Date(row[4]);
     var day = date.getDate();
     var color = null;
@@ -74,14 +84,14 @@ function formatSheet() {
     } else if (day >= 8 && day <= 14) {
       color = "#DEB48B";
     } else if (day >= 15 && day <= 21) {
-      color = "#DC9632";
+      color = "#D9915D";
     } else if (day >= 22 && day <= 28) {
-      color = "#F3A15C";
+      color = "#f3a15c";
     } else if (day >= 29 && day <= 31) {
-      color = "#F3835C";
+      color = "#f3835c";
     }
     if (color) {
-      sheet.getRange(i+1, 1, 1, range.getNumColumns()).setBackground(color).setFontColor("#000000");
+      sheet.getRange(i, 1, 1, range.getNumColumns()).setBackground(color).setFontColor("#000000");
     }
   }
 }
