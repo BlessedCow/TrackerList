@@ -1,4 +1,4 @@
-# H1 Google Sheets Formatting Script
+#  Google Sheets Formatting Script
 
 This script is designed to format a Google Sheets spreadsheet in a specific way. It performs several operations on the data in order to sort it, remove duplicates, and highlight rows based on certain criteria.
 Usage
