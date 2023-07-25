@@ -11,7 +11,8 @@ function formatSheet() {
   sheet.getRange("A2:E").sort([{column: 2, ascending: true}, {column: 3, ascending: true}, {column: 5, ascending: true}]);
 
   // Step 4: Remove duplicates
-  sheet.getDataRange().removeDuplicates([2, 3, 5]);
+  // sheet.getDataRange().removeDuplicates([2, 3, 5]);
+  // Sheet should not have any duplicates to begin with and this removes non-duplicates because it checks columns 2, 3, and 5 instead of just column 1.
 
   // Step 5: Create separate arrays for each color
   var range = sheet.getDataRange();
