@@ -1,0 +1,22 @@
+function cleanUpSheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Unfreeze all frozen rows
+  sheet.setFrozenRows(0);
+  
+  var data = sheet.getDataRange().getValues();
+  
+  // Remove empty rows
+  var numRows = data.length;
+  for (var i = numRows - 1; i >= 0; i--) {
+    if (data[i].join("").trim() == "") {
+      sheet.deleteRow(i + 1);
+    }
+  }
+  
+  // Clear highlighting colors
+  sheet.getRange(1, 1, numRows, sheet.getLastColumn()).setBackground(null);
+  
+  // Remove the first row
+  sheet.deleteRow(1);
+}
