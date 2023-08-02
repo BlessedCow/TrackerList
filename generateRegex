@@ -16,7 +16,7 @@ function outputRegexToSheet() {
   var names = [
   // "last_Name, first_Initial" or "shortHand",
   "Tisdell, K",
-  "Gupta, N",
+  "Gupta, R",
   "Meller, B",
   "J Alarcron",
   "J A"
