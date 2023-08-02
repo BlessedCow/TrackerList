@@ -1,0 +1,37 @@
+function generateRegex(names) {
+  var regexes = [];
+  
+ 
+  for (var i = 0; i < names.length; i++) {
+    var name = names[i];
+    var formattedName = name.replace(/\s/g, "\\s");
+    var regex = new RegExp("^(?<name>" + formattedName + ")");
+    regexes.push(regex);
+  }
+  
+  return regexes;
+}
+
+function outputRegexToSheet() {
+  var names = [
+  // "last_Name, first_Initial" or "shortHand",
+	"Tisdell, K",
+  "Gupta, N",
+  "Meller, B",
+  "J Alarcron",
+  "J A"
+  // Add more names as needed
+  ];
+  
+  var regexes = generateRegex(names);
+  
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var startRow = 2; // Row 2
+  var startColumn = 11; // Column K
+  
+  for (var i = 0; i < regexes.length; i++) {
+    var regex = regexes[i];
+    var output = regex.toString();
+    sheet.getRange(startRow + i, startColumn).setValue(output);
+  }
+}
