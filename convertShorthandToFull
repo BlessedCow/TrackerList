@@ -1,0 +1,69 @@
+{ function convertShorthandToFullName() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var range = sheet.getRange("C2:C"); // Assuming the shorthand/initials are in column C, the email/ID is in column B, and the full names should be placed in column C, replacing the shorthand/initials starting from row 2
+  var values = range.getValues();
+  var shorthandCounts = {}; // Object to keep track of shorthand counts
+
+  for (var i = 0; i < values.length; i++) {
+    var shorthand = values[i][0].trim().toLowerCase();
+    var email = values[i][1].toLowerCase();
+    var fullName = getFullNameFromShorthand(shorthand, email, shorthandCounts);
+
+    // Check if the full name already exists in the column
+    var fullNameRange = sheet.getRange("C2:C"); // Assuming the full names are in column C starting from row 2
+    var fullNameValues = fullNameRange.getValues();
+    var fullNameExists = false;
+
+    for (var j = 0; j < fullNameValues.length; j++) {
+      if (fullNameValues[j][0] === fullName) {
+        fullNameExists = true;
+        break;
+      }
+    }
+
+    // Modify the full name if it already exists
+    if (fullNameExists) {
+      fullName = modifyFullName(fullName);
+    }
+
+    sheet.getRange(i + 2, 3).setValue(fullName); // Assuming the full names should be placed in column C starting from row 2
+  }
+}
+
+function getFullNameFromShorthand(shorthand, email, shorthandCounts) {
+  // Add logic here to convert shorthand/initials to full names based on the associated email/ID
+  // Use a switch statement or if-else statements to handle different cases
+
+  if (shorthandCounts[shorthand] > 1) {
+    if (shorthand === "WS" || shorthand === "W S") { // Initials or Shorthand
+      if (email === "josue.guerrero@companyname.org") { // Email/ID
+        return "Wilkson, Sean"; // Fullname
+      } else if (email === "alejandro.figuerro@companyname.org") {
+        return "Wenn, Stephen";
+      }
+    } else if (shorthand === "TA" || shorthand === "T A") {
+      if (email === "sarah.miller@companyname.org") {
+        return "Todson, Allen";
+      } else if (email === "eduardo.lopez@companyname.org" || email === "christine.kiraki@companyname.org") {
+        return "Tonko, Andrea";
+      }
+    }
+  }
+}
+const nameRegex = /^(?<name>\sTisdell\sK)/ | /^(?<name>\sGupta\sR)/ | /^(?<name>\sMeller\sB)/ | /^(?<name>\sAlarcron\sJ)/ | /^(?<name>JA)/
+ // |^(?<name>Another\sName)
+const match = shorthand.toLowerCase().match(nameRegex);
+if (match) {
+  const fullName = match.groups.name.trim();
+} else if (shorthand === "Tisdell, K") {
+  return "Tisdell, Karyna";
+} else if (shorthand === "Gupta, R") {
+  return "Gupta, Ram ";
+} else if (shorthand === "Meller, B") {
+  return "Meller, Brayan ";
+} else if (shorthand === "Alarcron, J") || (shorthand === "J A") {
+  return "Alarcron, Jimothy ";
+} else {
+    return shorthand; // Return the shorthand as is if no match is found
+  }
+}
