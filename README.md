@@ -42,3 +42,5 @@ There's also more I want to add.
 *These scripts were written with a specific use in mind, so it doesn't apply to much else on its own.*
 *They can, however, be broken down and re-used*
 
+*Any names provided are completely fictional. They are simply there to make the code easier to read/understand.*
+
