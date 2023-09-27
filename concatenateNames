@@ -1,0 +1,18 @@
+function mergeColumns() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var startRow = 69; // Starting row number
+  var endRow = 87; // Ending row number
+  var firstNameColumn = 4; // Column D
+  var lastNameColumn = 5; // Column E
+  
+  for (var i = startRow; i <= endRow; i++) {
+    var firstName = sheet.getRange(i, firstNameColumn).getValue();
+    var lastName = sheet.getRange(i, lastNameColumn).getValue();
+    var fullName = firstName + " " + lastName;
+    sheet.getRange(i, firstNameColumn).setValue(fullName);
+    sheet.getRange(i, firstNameColumn).setBackground(null); // Reset background color
+    sheet.getRange(i, lastNameColumn).setBackground(null); // Reset background color
+    sheet.getRange(i, lastNameColumn).clearContent();
+    
+  }
+}
