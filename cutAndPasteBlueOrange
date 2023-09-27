@@ -1,0 +1,17 @@
+function cutAndPasteBlue() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var sourceRange = sheet.getRange("D69:D87");
+  var targetRange = sheet.getRange("M50:M68");
+  sourceRange.copyTo(targetRange);
+  sourceRange.clearContent();
+  targetRange.setBorder(true, true, true, true, true, true);
+}
+
+function cutAndPasteOrange() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var sourceRange = sheet.getRange("F69:F87");
+  var targetRange = sheet.getRange("O50:O68");
+  sourceRange.copyTo(targetRange);
+  sourceRange.clearContent();
+  targetRange.setBorder(true, true, true, true, true, true);
+}
