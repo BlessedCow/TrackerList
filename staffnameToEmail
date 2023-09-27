@@ -1,0 +1,29 @@
+function formatNamesBiweek1() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var lastRow = sheet.getLastRow();
+  var range = sheet.getRange("M50:M" + lastRow);
+  var values = range.getValues();
+  
+  for (var i = 0; i < values.length; i++) {
+    var name = values[i][0];
+    if (name.indexOf(" ") !== -1) {
+      var formattedName = name.replace(" ", ".") + "@companyName.org";
+      range.offset(i, 0, 1, 1).setValue(formattedName);
+    }
+  }
+}
+
+function formatNamesBiweek2() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var lastRow = sheet.getLastRow();
+  var range = sheet.getRange("O49:O" + lastRow);
+  var values = range.getValues();
+  
+  for (var i = 0; i < values.length; i++) {
+    var name = values[i][0];
+    if (name.indexOf(" ") !== -1) {
+      var formattedName = name.replace(" ", ".") + "@companyName.org";
+      range.offset(i, 0, 1, 1).setValue(formattedName);
+    }
+  }
+}
