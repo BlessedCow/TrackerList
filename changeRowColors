@@ -1,0 +1,10 @@
+function changeRowColors() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var startRow = 2; // Starting row
+  var endRow = 36; // Ending row
+  
+  for (var row = startRow; row <= endRow; row++) {
+    var color = sheet.getRange("I" + row).getBackground();
+    sheet.getRange(row, 1, 1, 13).setBackground(color); // Adjust the range to cover columns A to M (13 columns)
+  }
+}
