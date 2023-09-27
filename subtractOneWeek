@@ -1,0 +1,13 @@
+function subNumbers() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var eValues = sheet.getRange("E2:E39").getValues();
+  var gValues = sheet.getRange("G2:G39").getValues();
+  var cValues = sheet.getRange("C2:C39").getValues();
+  
+  for (var i = 0; i < eValues.length; i++) {
+    if (cValues[i][0] !== "CC" && eValues[i][0] !== "" && gValues[i][0] !== "") {
+      var sum = gValues[i][0] - eValues[i][0];
+      sheet.getRange("G" + (i + 2)).setValue(sum);
+    }
+  }
+}
