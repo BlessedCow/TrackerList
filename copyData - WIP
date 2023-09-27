@@ -1,0 +1,17 @@
+function copyData() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var startRow = 2; // Starting row
+  var endRow = 36; // Ending row
+  var pasteRow = 49; // Row to paste the data
+  var pasteCol = 15; // Column to paste the data
+  
+  for (var row = startRow; row <= endRow; row++) {
+    var percentage = sheet.getRange("I" + row).getValue();
+    if (percentage > 0.7) {
+      var data = sheet.getRange(row, 1, 1, 2).getValues();
+      var concatenatedData = data[0][0] + " " + data[0][1]; // Concatenate the two columns
+      sheet.getRange(pasteRow, pasteCol).setValue(concatenatedData); // Paste the concatenated data
+      pasteRow++;
+    }
+  }
+}
