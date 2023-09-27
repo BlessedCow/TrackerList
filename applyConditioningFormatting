@@ -1,0 +1,39 @@
+function applyConditionalFormatting() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Get all values and background colors
+  var dataRange = sheet.getRange("I3:I");
+  var values = dataRange.getValues();
+  var numRows = values.length;
+  var colorArray = [];
+  
+  for (var i = 0; i < numRows; i++) {
+    if ((i + 3) !== 12 && (i + 3) !== 22 && (i + 3) !== 36) { // Exclude rows 12, 22, and 36       // THIS
+      var value = values[i][0]; // Assuming Column I is the 1st column (index 0)
+      
+      if (typeof value === 'number' && !isNaN(value)) {
+        if (value == 1) {
+          colorArray.push(["#6aa84f"]);
+        } else if (value > 1 && value <= 34) {
+          colorArray.push(["#6aa84f"]);
+        } else if (value > 34 && value <= 69) {
+          colorArray.push(["#f1c232"]);
+        } else if (value > 69 && value <= 99) {
+          colorArray.push(["#e69138"]);
+        } else if (value == 100) {
+          colorArray.push(["#990000"]);
+        } else {
+          colorArray.push(["#d5a6bd"]);
+        }
+      } else {
+        colorArray.push([""]); // Empty string for non-numeric or empty cells
+      }
+    } else {
+      colorArray.push([""]); // Empty string for excluded cells
+    }
+  }
+  
+  // Apply conditional formatting to the correct range
+  var range = sheet.getRange("I3:I" + (numRows + 2));
+  range.setBackgrounds(colorArray);
+}
