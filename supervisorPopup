@@ -1,0 +1,6 @@
+function showSuperV() {
+  var data = "john.doe@companyName.org, jane.smith@companyName.org, robert.johnson@companyName.org, sarah.jackson@companyName.org, david.wilson@companyName.org";
+  SpreadsheetApp.getUi().alert(data);
+}
+
+// This is where you would put supervisor's emails to CC. Just an easier way to copy/paste into outbounding mail
